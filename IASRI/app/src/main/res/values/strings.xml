@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">IASRI</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="btnTakePicture">Capture Image</string>
+    <string name="btnreference">Reference Image</string>
+    <string name="btnzero">Capture Image(Zero angle)</string>
+    <string name="btn180">Capture Image(180 angle)</string>
+    <string name="or">(or)</string>
+    <string name="btnUploadToServer">Upload to Server</string>
+    <string name="btncrop">Crop</string>
+    <string name="btnbw">Black white</string>
+    <string name="btnbinary">Binary</string>
+    <string name="croppedImageDesc">The cropped image.</string>
+    <string name="title_activity_crop">CropActivity</string>
+    <string name="title_activity_size">SizeActivity</string>
+    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_fianl_ans">FianlAns</string>
+</resources>

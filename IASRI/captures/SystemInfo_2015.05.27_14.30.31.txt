@@ -1,0 +1,98 @@
+Applications Graphics Acceleration Info:
+Uptime: 254602814 Realtime: 263423461
+
+** Graphics info for pid 26701 [com.example.kushagrjolly.iasri] **
+
+Recent DisplayList operations
+            Translate
+            DrawRenderNode
+              Save
+              ClipRect
+              DrawRenderNode
+              DrawRenderNode
+                Save
+                ClipRect
+                DrawRenderNode
+                DrawRenderNode
+                  Save
+                  Translate
+                  ConcatMatrix
+                  Save
+                  DrawBitmap
+                  RestoreToCount
+                DrawRenderNode
+                  DrawRenderNode
+                    DrawRect
+                  Save
+                  ClipRect
+                  Translate
+                  DrawText
+                  RestoreToCount
+                RestoreToCount
+              RestoreToCount
+        DrawRenderNode
+          DrawRenderNode
+            DrawRect
+          DrawRenderNode
+            DrawRenderNode
+              Save
+              ClipRect
+              DrawText
+              RestoreToCount
+    RestoreToCount
+  DrawRenderNode
+    DrawRenderNode
+      DrawRect
+RestoreToCount
+DrawRect
+DrawBitmap
+DrawShadow
+DrawShadow
+DrawRect
+DrawText
+DrawShadow
+DrawRect
+DrawRect
+DrawText
+
+Caches:
+Current memory usage / total memory usage (bytes):
+  TextureCache         21310224 / 75497472
+  LayerCache                  0 / 50331648 (numLayers = 0)
+  Garbage layers              0
+  Active layers               0
+  RenderBufferCache           0 /  8388608
+  GradientCache               0 /  1048576
+  PathCache               22952 / 33554432
+  TessellationCache        2976 /  1048576
+  TextDropShadowCache         0 /  6291456
+  PatchCache               2880 /   131072
+  FontRenderer 0 A8     1048576 /  1048576
+  FontRenderer 0 RGBA         0 /        0
+  FontRenderer 0 total  1048576 /  1048576
+Other:
+  FboCache                    0 /        0
+Total memory usage:
+  22387608 bytes, 21.35 MB
+
+Profile data in ms:
+
+	com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.MainActivity/android.view.ViewRootImpl@3be5f46b (visibility=8)
+	com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.CropActivity/android.view.ViewRootImpl@723dbc8 (visibility=0)
+	com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.CropActivity/android.view.ViewRootImpl@3bebb461 (visibility=8)
+View hierarchy:
+
+  com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.MainActivity/android.view.ViewRootImpl@3be5f46b
+  17 views, 13.55 kB of display lists
+
+  com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.CropActivity/android.view.ViewRootImpl@723dbc8
+  21 views, 22.26 kB of display lists
+
+  com.example.kushagrjolly.iasri/com.example.kushagrjolly.iasri.CropActivity/android.view.ViewRootImpl@3bebb461
+  25 views, 19.92 kB of display lists
+
+
+Total ViewRootImpl: 3
+Total Views:        63
+Total DisplayList:  55.73 kB
+
