@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,15 +22,18 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends Activity {
+
     // LogCat tag
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int RESULT_LOAD_IMG = 1;
 
-    double oneleafarea;
     // Camera activity request codes
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
 
     public static final int MEDIA_TYPE_IMAGE = 1;
+
+    // Directory name to store captured images and videos
+    public static final String IMAGE_DIRECTORY_NAME = "Android File Upload";
 
     private Uri fileUri; // file url to store image/video
     TextView textView2;
@@ -39,9 +41,8 @@ public class MainActivity extends Activity {
     private Button btnCapturePicture;
     private Button btngallery;
     private String imgDecodableString;
-    private double leafarea0;
     Intent val;
-    int value;
+    int value=1;
 
 
     @Override
@@ -121,6 +122,7 @@ public class MainActivity extends Activity {
         // start the image capture Intent
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
     }
+
     public void loadImagefromGallery() {
         // Create intent to Open Image applications like Gallery, Google Photos
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
@@ -229,13 +231,13 @@ public class MainActivity extends Activity {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                Config.IMAGE_DIRECTORY_NAME);
+                IMAGE_DIRECTORY_NAME);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
                 Log.d(TAG, "Oops! Failed create "
-                        + Config.IMAGE_DIRECTORY_NAME + " directory");
+                        + IMAGE_DIRECTORY_NAME + " directory");
                 return null;
             }
         }
@@ -277,10 +279,4 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 }
- class Config {
-    // File upload url (replace the ip with your server address)
-    public static final String FILE_UPLOAD_URL = "http://192.168.139.1/AndroidFileUpload/fileupload.php";
 
-    // Directory name to store captured images and videos
-    public static final String IMAGE_DIRECTORY_NAME = "Android File Upload";
-}

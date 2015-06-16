@@ -8,33 +8,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.os.Handler;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.edmodo.cropper.CropImageView;
-import com.loopj.android.http.RequestParams;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Random;
 
 
@@ -42,15 +34,13 @@ public class CropActivity extends Activity {
     private static String SOAP_ACTION1 = "http://pack1/convertStringtoImage";
     private static String NAMESPACE = "http://pack1/";
     private static String METHOD_NAME1 = "convertStringtoImage";
-    private static String URL = "http://172.16.6.44:8080/webservice/test?wsdl";
+    private static String URL = "http://192.168.1.105:8080/webservice/test?wsdl";
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     ProgressDialog prgDialog;
     String encodedString;
-    RequestParams params = new RequestParams();
     String  fileName;
     Bitmap bitmap;
-    private static int RESULT_LOAD_IMG = 1;
     public String resp;
     double Area;
     Intent resultAct;
@@ -71,11 +61,8 @@ public class CropActivity extends Activity {
     CropImageView cropImageView;
     Button cropButton,uploadButton;
     private Uri picUri;
-    int area,x,y;
-    private double oneleafarea;
-    private double leafarea0;
+    int x,y;
     int value;
-    private String val;
     String fname;
     private String cropPath=null;
 
@@ -112,9 +99,6 @@ public class CropActivity extends Activity {
         // Set Cancelable as False
         prgDialog.setCancelable(false);
 
-        sharedPreferences=getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
-        Area=sharedPreferences.getFloat("AOR", (float) Area);
-
         // Receiving the data from previous activity
         Intent i = getIntent();
 
@@ -123,7 +107,11 @@ public class CropActivity extends Activity {
         String fileNameSegments[] = imgPath.split("/");
         fileName = fileNameSegments[fileNameSegments.length - 1];
         value=i.getIntExtra("Value",value);
-        Log.d("log", String.valueOf(value));
+        if((value==2)||(value==3)||(value==4)) {
+            sharedPreferences = getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
+            Area = sharedPreferences.getFloat("AOR", (float) Area);
+            Log.d("AOR", String.valueOf(Area));
+        }
         // boolean flag to identify the media type, image or video
         boolean isImage = i.getBooleanExtra("isImage", true);
         cropImageView.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES, DEFAULT_ASPECT_RATIO_VALUES);
@@ -148,29 +136,44 @@ public class CropActivity extends Activity {
 
 
     }
-    public void uploadImage(View v) {
-        // When Image is selected from Gallery
-        if (imgPath != null && !imgPath.isEmpty()) {
-            //prgDialog.setMessage("Converting Image to Binary Data");
-            prgDialog.setMessage("Uploading data, please wait...");
-            prgDialog.show();
-            // Convert image to String using Base64
-            encodeImagetoString();
+    public void launchsizeactivity(View v) {
 
+        if (value==1) {
+            resultAct = new Intent(CropActivity.this, SizeActivity.class);
+            resultAct.putExtra("cropPath", cropPath);
+            resultAct.putExtra("fname", fname);
+            resultAct.putExtra("value", value);
+            startActivity(resultAct);
 
-            // When Image is not selected from Gallery
         } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    "You must select image from gallery before you try to upload",
-                    Toast.LENGTH_LONG).show();
 
-        }}
-    public void encodeImagetoString() {
+            // When Image is selected from Gallery
+            if (imgPath != null && !imgPath.isEmpty()) {
+                //prgDialog.setMessage("Converting Image to Binary Data");
+                prgDialog.setMessage("Uploading data, please wait...");
+                prgDialog.show();
+                // Convert image to String using Base64
+                encodeImagetoString();
+
+
+                // When Image is not selected from Gallery
+            } else {
+                Toast.makeText(
+                        getApplicationContext(),
+                        "You must select image from gallery before you try to upload",
+                        Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+
+    }
+
+    private void encodeImagetoString() {
         new AsyncTask<Void, Void, String>() {
 
             protected void onPreExecute() {
-
+            Log.d("choice", String.valueOf(value));
             };
 
             @Override
@@ -196,11 +199,9 @@ public class CropActivity extends Activity {
                 SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
                 request.addProperty("encodedImageStr",encodedString);
                 request.addProperty("fileName", fname);
-                Log.d("area", String.valueOf(Area));
                 String AOR= String.valueOf(Area);
-                request.addProperty("AOR",AOR);
+                request.addProperty("AOR", AOR);
                 request.addProperty("val",value);
-                Log.d("XYZ", String.valueOf(value));
 
                 //Declare the version of the SOAP request
                 SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER10);
@@ -210,6 +211,7 @@ public class CropActivity extends Activity {
                 //this is the actual part that will call the webservice
                 try {
                     androidHttpTransport.call(SOAP_ACTION1, envelope);
+
                 } catch (Exception e)  {
                     e.printStackTrace();
                 }
@@ -217,7 +219,7 @@ public class CropActivity extends Activity {
 
 
                     // Get the SoapResult from the envelope body.
-                   SoapObject result = (SoapObject)envelope.bodyIn;
+                    SoapObject result = (SoapObject)envelope.bodyIn;
 
                     if(result != null)
                     {
@@ -237,18 +239,32 @@ public class CropActivity extends Activity {
 
             @Override
             protected void onPostExecute(String msg) {
-
+                value++;
                 prgDialog.hide();
-                launchActivity(true);
+                launch();
+
             }
         }.execute(null, null, null);
     }
 
-    private void launchActivity(boolean b) {
+    private void launch() {
+        if (value < 4) {
 
-        resultAct=new Intent(CropActivity.this,ResultActivity.class);
-        resultAct.putExtra("result", resp);
-        startActivity(resultAct);
+                    Intent intent;
+                    intent = new Intent(CropActivity.this, MainActivity.class);
+                    intent.putExtra("value", value);
+                    startActivity(intent);
+
+        }
+        else {
+
+                    Intent intent;
+                    intent = new Intent(CropActivity.this, FinalAns.class);
+                    intent.putExtra("finalValue", resp);
+                    startActivity(intent);
+
+
+        }
     }
 
 
