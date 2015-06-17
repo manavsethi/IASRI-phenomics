@@ -16,9 +16,8 @@ repositories {
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-
     defaultConfig {
-        applicationId "com.example.kushagrjolly.iasri"
+        applicationId 'com.example.iasri'
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1
@@ -29,6 +28,8 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    productFlavors {
     }
 }
 

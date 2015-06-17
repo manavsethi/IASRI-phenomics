@@ -19,4 +19,7 @@
     <string name="title_activity_size">SizeActivity</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="title_activity_fianl_ans">FianlAns</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
