@@ -14,7 +14,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name=".CropActivity"
@@ -36,6 +35,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".Procedure"
+            android:label="@string/title_activity_procedure" >
+        </activity>
+        <activity
+            android:name=".AboutUs"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 
