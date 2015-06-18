@@ -6,9 +6,14 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.iasri.Procedure">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView android:text="Procedure" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"/>
+        android:id="@+id/textView"
+        android:capitalize="characters"
+        android:gravity="center|center_horizontal"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -17,7 +22,17 @@
         android:id="@+id/buttonNext"
         android:onClick="next"
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Step 1: Take/Upload image of Reference Object\n\nStep 2:Crop the image of Reference Object\n\nStep 3:Enter the physical/actual area of Reference Object\n\nStep 4:Take/Upload the image of plant from front\n\nStep 5: Crop the image of shoot from the Reference Image\n\nStep 6:Take/Upload the image of plant from back\n\nStep 7:Click next to get the final answer"
+        android:id="@+id/textView11"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".SplashScreen"
-            android:label="@string/title_activity_splash_screen" >
+            android:label="Phenomics" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,9 +42,8 @@
         </activity>
         <activity
             android:name=".AboutUs"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_about_us"
-            android:theme="@style/FullscreenTheme" >
+            >
         </activity>
     </application>
 

@@ -285,7 +285,13 @@ public class CropActivity extends Activity {
 
 
             final Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
-
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            // Must compress the Image to reduce image size to make upload easy
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            byte[] byte_arr = stream.toByteArray();
+            // Encode Image to String
+            encodedString = Base64.encodeToString(byte_arr, 0);
+            Log.d("Bitmap",encodedString);
             cropImageView.setImageBitmap(bitmap);
         }
     }
