@@ -33,9 +33,9 @@ import java.util.Random;
 
 
 public class CropActivity extends Activity {
-    private static String SOAP_ACTION1 = "http://pack1/convertStringtoImage";
+    private static String SOAP_ACTION1 = "http://pack1/convert";
     private static String NAMESPACE = "http://pack1/";
-    private static String METHOD_NAME1 = "convertStringtoImage";
+    private static String METHOD_NAME1 = "convert";
     private static String URL = "http://172.16.6.123:8080/webservice/test?wsdl";
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -56,10 +56,7 @@ public class CropActivity extends Activity {
     private int mAspectRatioY = DEFAULT_ASPECT_RATIO_VALUES;
     File file;
     Bitmap croppedImage;
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     private String imgPath = null;
-    long totalSize = 0;
     CropImageView cropImageView;
     Button cropButton,uploadButton;
     private Uri picUri;

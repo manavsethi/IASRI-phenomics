@@ -50,12 +50,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_below="@+id/btnCrop"
-                android:layout_alignStart="@+id/btnCrop"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 />
             <Button
-                android:id="@+id/btnUpload"
+            android:id="@+id/btnUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/btn_bg"
@@ -63,8 +62,7 @@
             android:textColor="@color/white"
             android:visibility="visible"
             android:gravity="center"
-                android:onClick="launchsizeactivity"
-                android:paddingTop="10dp"
+            android:onClick="launchsizeactivity"
             android:layout_gravity="center_horizontal"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
