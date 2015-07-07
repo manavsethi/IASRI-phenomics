@@ -33,10 +33,10 @@ import java.util.Random;
 
 
 public class CropActivity extends Activity {
-    private static String SOAP_ACTION1 = "http://pack1/convert";
-    private static String NAMESPACE = "http://pack1/";
+    private static String SOAP_ACTION1 = "http://ws.apache.org/axis2/convert";
+    private static String NAMESPACE = "http://ws.apache.org/axis2";
     private static String METHOD_NAME1 = "convert";
-    private static String URL = "http://172.16.6.123:8080/webservice/test?wsdl";
+    private static String URL = "http://172.16.6.113:8081/axis2/services/test?wsdl";
     SharedPreferences sharedPreferences;
     public static final String MyPREFERENCES = "MyPrefs" ;
     ProgressDialog prgDialog;
@@ -195,11 +195,10 @@ public class CropActivity extends Activity {
                 // Encode Image to String
                 encodedString = Base64.encodeToString(byte_arr, 0);
                 //Initialize soap request + add parameters
-
+                String AOR= String.valueOf(Area);
                 SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
                 request.addProperty("encodedImageStr",encodedString);
                 request.addProperty("fileName", fname);
-                String AOR= String.valueOf(Area);
                 request.addProperty("AOR", AOR);
                 request.addProperty("val",value);
 
